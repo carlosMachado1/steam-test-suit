@@ -1,2 +1,2 @@
-# steam-test-suit
-The main goal of this repository is to study a little bit about python lib called pytest, so I want to test steam site and test some user interactions like search for  games, get latest news, change language and goes on... 
+# Relatório
+O principal objetivo deste repositório é estudar um pouco sobre a lib python chamada pytest, então quero testar o site steam e testar algumas interações do usuário como procurar por jogos, receber as últimas notícias, mudar de idioma e muito mais.
