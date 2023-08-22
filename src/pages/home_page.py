@@ -1,6 +1,6 @@
 from typing import List
-from .base_page import BasePage
-from ..locators.search_locator import SearchGameLocator
+from src.pages.base_page import BasePage
+from src.locators.search_locator import SearchGameLocator
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.expected_conditions import AnyDriver
 
