@@ -19,4 +19,38 @@ class HomePage(BasePage):
         self.click(SearchGameLocator.search_button)
 
     def get_all_filters(self) -> List[WebElement]:
-        return self.find_elements(SearchGameLocator.search_filters)
+        """Return all filters applied to the page"""
+        filters = []
+        filters_tag = self.find_elements(SearchGameLocator.search_filters)
+        return filters
+
+    def get_results(self) -> str:
+        return self.find_element(SearchGameLocator.search_result).text
+
+    def change_language(self, language: str) -> bool:
+        """Perform an change language"""
+        self.click(SearchGameLocator.show_languages_button)
+        languages = self.find_elements(SearchGameLocator.all_laguages)
+        try:
+            for element in languages:
+                if element.text == language:
+                    element.click()
+                    return True
+        except Exception as e:
+            raise e
+        return False
+
+    def change_sort(self, sort: str) -> bool:
+        self.click(SearchGameLocator.sort_button)
+        sort_items = self.find_elements(SearchGameLocator.all_sorts)
+        try:
+            for element in sort_items:
+                if element.text == sort:
+                    element.click()
+                    return True
+        except Exception as e:
+            raise e
+        return False
+
+    def get_sort_type(self) -> str:
+        return self.find_element(SearchGameLocator.sort_button).text
