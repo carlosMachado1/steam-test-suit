@@ -26,7 +26,7 @@ class BasePage:
     def find_elements(self, by_locator: Tuple[str, str]) -> List[WebElement]:
         """Returns all web elements whose locator is passed to it"""
         return WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_elements_located(by_locator)
+            EC.visibility_of_any_elements_located(by_locator)
         )
 
     def get_title(self) -> str:
