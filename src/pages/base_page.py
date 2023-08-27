@@ -17,6 +17,9 @@ class BasePage:
         """Performs text entry of the passed in text, in a web element whose locator is passed to it"""
         return self.find_element(by_locator).send_keys(*text)
 
+    def clear_field(self, by_locator: Tuple[str, str]):
+        self.find_element(by_locator).clear()
+
     def find_element(self, by_locator: Tuple[str, str]) -> WebElement:
         """Returns a web element whose locator is passed to it"""
         return WebDriverWait(self.driver, 10).until(

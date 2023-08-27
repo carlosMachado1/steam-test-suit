@@ -1,10 +1,12 @@
 import logging as log
-from random import choice
+from time import sleep
+from random import choice, sample
 from unittest import TestCase
 from selenium.webdriver import Firefox
 from src.pages.home_page import HomePage
 from selenium.webdriver.firefox.service import Service
 from src.locators.search_locator import SearchGameLocator
+from src.validators.home_page_validatos import HomePageValidators
 
 
 class TestHomePage(TestCase):
@@ -13,10 +15,28 @@ class TestHomePage(TestCase):
         # self.service = Service(log_output=)
         self.home_page = HomePage(self.driver)
         self.games = [
-            "Dark Souls",
+            "DARK SOULS™: REMASTERED",
             "Remnant: From the Ashes",
             "Sekiro: Shadows Die Twice",
             "Remnant II",
+        ]
+        self.narrow_filtes_tag = [
+            "Indie",
+            "Action",
+            "Singleplayer",
+            "Adventure",
+            "Casual",
+            # "2D",
+            # "Simulation",
+            # "Strategy",
+            # "Puzzle",
+            # "Colorful",
+            # "Atmospheric",
+            # "Cute",
+            # "Pixel Graphics",
+            # "Relaxing",
+            # "Family Friendly",
+            # "RPG",
         ]
 
     def tearDown(self) -> None:
@@ -81,17 +101,28 @@ class TestHomePage(TestCase):
     #     page_sort_type = self.home_page.get_sort_type()
     #     self.assertEqual(sort_type, page_sort_type, "Sort type is not matching")
 
-    def test_ct05(self):
-        """Targeted test to verify filter tool function"""
-        pass
+    # def test_ct05(self):
+    #     """No filters are applied"""
+    #     self.home_page.click(SearchGameLocator.search_button)
+    #     sleep(2)
+    #     filters_tag = self.home_page.get_all_filters()
+    #     self.assertEqual(filters_tag, [], "No filters tag must be applied")
 
     # def test_ct06(self):
-    #     pass
+    #     """One or more filters tag must be applied"""
+    #     game = choice(self.games)
+    #     self.home_page.fill_search_field(game)
+    #     self.home_page.click(SearchGameLocator.search_button)
+    #     filters = sample(self.narrow_filtes_tag, 2)
+    #     filters_applied = [f'"{game}"']
+    #     filters_applied.extend(filters)
+    #     self.home_page.set_filters(filters)
+    #     filters_tag = self.home_page.get_all_filters()
+    #     self.assertEqual(
+    #         filters_applied, filters_tag, "Multiple filters tag must be applied"
+    #     )
 
     # def test_ct07(self):
-    #     pass
-
-    # def test_ct08(self):
     #     """Assert change page language"""
     #     languages = [
     #         "Deutsch (German)",
@@ -99,8 +130,17 @@ class TestHomePage(TestCase):
     #         "Português (Portuguese - Portugal)",
     #         "Português - Brasil (Portuguese - Brazil)",
     #     ]
+
     #     language = choice(languages)
     #     log.info(f"Change page language to {language}")
-    #     assert self.home_page.change_language(
-    #         language
-    #     ), "Couldn't change languague from page"
+    #     self.home_page.change_language(language)
+    #     sleep(2)
+    #     new_page_language = self.home_page.get_all_languages()
+    #     self.assertListEqual(
+    #         HomePageValidators.languages_dict[language],
+    #         new_page_language,
+    #         "Language was not changed correctly",
+    #     )
+
+    def test_ct08(self):
+        pass
